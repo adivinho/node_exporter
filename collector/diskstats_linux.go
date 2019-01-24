@@ -17,6 +17,7 @@ package collector
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -26,7 +27,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
-	"gopkg.in/alecthomas/kingpin.v2"
+	//	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 const (
@@ -36,7 +37,8 @@ const (
 )
 
 var (
-	ignoredDevices = kingpin.Flag("collector.diskstats.ignored-devices", "Regexp of devices to ignore for diskstats.").Default("^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$").String()
+	// ignoredDevices = kingpin.Flag("collector.diskstats.ignored-devices", "Regexp of devices to ignore for diskstats.").Default("^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$").String()
+	ignoredDevices = flag.String("collector.diskstats.ignored-devices", "^(ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$", "Regexp of devices to ignore for diskstats.")
 )
 
 type typedFactorDesc struct {

@@ -14,9 +14,11 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
 	_ "net/http/pprof"
+	"os"
 	"sort"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -24,7 +26,7 @@ import (
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/node_exporter/collector"
-	"gopkg.in/alecthomas/kingpin.v2"
+	//	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/percona/exporter_shared"
 )
@@ -72,14 +74,24 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	var (
-		listenAddress = kingpin.Flag("web.listen-address", "Address on which to expose metrics and web interface.").Default(":9100").String()
-		metricsPath   = kingpin.Flag("web.telemetry-path", "Path under which to expose metrics.").Default("/metrics").String()
+		showVersion = flag.Bool("version", false, "Print version information.")
+		//	listenAddress = kingpin.Flag("web.listen-address", "Address on which to expose metrics and web interface.").Default(":9100").String()
+		listenAddress = flag.String("web.listen-address", ":9100", "Address on which to expose metrics and web interface.")
+		//	metricsPath = kingpin.Flag("web.telemetry-path", "Path under which to expose metrics.").Default("/metrics").String()
+		metricsPath = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 	)
 
-	log.AddFlags(kingpin.CommandLine)
-	kingpin.Version(version.Print("node_exporter"))
-	kingpin.HelpFlag.Short('h')
-	kingpin.Parse()
+	//	log.AddFlags(kingpin.CommandLine)
+	//	kingpin.Version(version.Print("node_exporter"))
+	//	kingpin.HelpFlag.Short('h')
+	//	kingpin.Parse()
+
+	flag.Parse()
+
+	if *showVersion {
+		fmt.Fprintln(os.Stdout, version.Print("node_exporter"))
+		os.Exit(0)
+	}
 
 	log.Infoln("Starting node_exporter", version.Info())
 	log.Infoln("Build context", version.BuildContext())
