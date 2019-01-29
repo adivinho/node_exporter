@@ -42,6 +42,7 @@ type netStatCollector struct {
 
 func init() {
 	registerCollector("netstat", defaultEnabled, NewNetStatCollector)
+	Factories["netstat"] = NewNetStatCollector
 }
 
 // NewNetStatCollector takes and returns

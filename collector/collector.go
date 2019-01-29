@@ -27,6 +27,7 @@ import (
 
 // Namespace defines the common namespace to be used by all metrics.
 const namespace = "node"
+const Namespace = "node"
 
 var (
 	scrapeDurationDesc = prometheus.NewDesc(
@@ -50,6 +51,7 @@ const (
 
 var (
 	factories      = make(map[string]func() (Collector, error))
+	Factories      = make(map[string]func() (Collector, error))
 	collectorState = make(map[string]*bool)
 )
 

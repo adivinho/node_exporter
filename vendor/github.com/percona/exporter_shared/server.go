@@ -121,3 +121,18 @@ func runHTTP(addr, path string, handler http.Handler, landing []byte) {
 	log.Infof("Starting HTTP server for http://%s%s ...", addr, path)
 	log.Fatal(srv.ListenAndServe())
 }
+
+func RunHTTP(addr, path string, handler http.Handler, landing []byte) {
+	mux := http.NewServeMux()
+	mux.Handle(path, handler)
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write(landing)
+	})
+
+	srv := &http.Server{
+		Addr:    addr,
+		Handler: mux,
+	}
+	log.Infof("Starting HTTP server for http://%s%s ...", addr, path)
+	log.Fatal(srv.ListenAndServe())
+}

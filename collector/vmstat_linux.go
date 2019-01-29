@@ -41,6 +41,7 @@ type vmStatCollector struct {
 
 func init() {
 	registerCollector("vmstat", defaultEnabled, NewvmStatCollector)
+	Factories["vmstat"] = NewvmStatCollector
 }
 
 // NewvmStatCollector returns a new Collector exposing vmstat stats.

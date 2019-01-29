@@ -51,6 +51,7 @@ type textFileCollector struct {
 
 func init() {
 	registerCollector("textfile", defaultEnabled, NewTextFileCollector)
+	Factories["textfile"] = NewTextFileCollector
 }
 
 // NewTextFileCollector returns a new Collector exposing metrics read from files
