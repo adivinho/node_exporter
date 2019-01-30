@@ -50,6 +50,7 @@ var unitStatesName = []string{"active", "activating", "deactivating", "inactive"
 
 func init() {
 	registerCollector("systemd", defaultDisabled, NewSystemdCollector)
+	Factories["systemd"] = NewSystemdCollector
 }
 
 // NewSystemdCollector returns a new Collector exposing systemd statistics.

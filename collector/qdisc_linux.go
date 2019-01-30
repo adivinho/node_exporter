@@ -39,6 +39,7 @@ var (
 
 func init() {
 	registerCollector("qdisc", defaultDisabled, NewQdiscStatCollector)
+	Factories["qdisc"] = NewQdiscStatCollector
 }
 
 // NewQdiscStatCollector returns a new Collector exposing queuing discipline statistics.

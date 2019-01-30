@@ -46,6 +46,7 @@ var (
 
 func init() {
 	registerCollector("wifi", defaultDisabled, NewWifiCollector)
+	Factories["wifi"] = NewWifiCollector
 }
 
 var _ wifiStater = &wifi.Client{}

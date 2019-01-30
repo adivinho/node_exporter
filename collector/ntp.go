@@ -51,6 +51,7 @@ type ntpCollector struct {
 
 func init() {
 	registerCollector("ntp", defaultDisabled, NewNtpCollector)
+	Factories["ntp"] = NewNtpCollector
 }
 
 // NewNtpCollector returns a new Collector exposing sanity of local NTP server.

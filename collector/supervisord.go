@@ -37,6 +37,7 @@ type supervisordCollector struct {
 
 func init() {
 	registerCollector("supervisord", defaultDisabled, NewSupervisordCollector)
+	Factories["supervisord"] = NewSupervisordCollector
 }
 
 // NewSupervisordCollector returns a new Collector exposing supervisord statistics.
