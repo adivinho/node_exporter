@@ -29,7 +29,6 @@ import (
 	"github.com/prometheus/common/log"
 	"github.com/prometheus/common/version"
 	"github.com/prometheus/node_exporter/collector"
-	//	"gopkg.in/alecthomas/kingpin.v2"
 
 	"github.com/percona/exporter_shared"
 )
@@ -85,7 +84,6 @@ func filterAvailableCollectors(collectors string) string {
 }
 
 func execute(name string, c collector.Collector, ch chan<- prometheus.Metric) {
-	fmt.Printf("func execute started: '%s'\n", name)
 	begin := time.Now()
 	err := c.Update(ch)
 	duration := time.Since(begin)
@@ -103,11 +101,9 @@ func execute(name string, c collector.Collector, ch chan<- prometheus.Metric) {
 }
 
 func loadCollectors(list []string) (map[string]collector.Collector, error) {
-	fmt.Println("func loadCollectors started ...")
 	collectors := map[string]collector.Collector{}
-//	for _, name := range strings.Split(list, ",") {
+	//	for _, name := range strings.Split(list, ",") {
 	for _, name := range list {
-		fmt.Printf("collector '%s'\n", name)
 		fn, ok := collector.Factories[name]
 		if !ok {
 			fmt.Printf("collector '%s' not available", name)
@@ -166,16 +162,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	var (
 		showVersion = flag.Bool("version", false, "Print version information.")
-		//	listenAddress = kingpin.Flag("web.listen-address", "Address on which to expose metrics and web interface.").Default(":9100").String()
 		listenAddress = flag.String("web.listen-address", ":9100", "Address on which to expose metrics and web interface.")
-		//	metricsPath = kingpin.Flag("web.telemetry-path", "Path under which to expose metrics.").Default("/metrics").String()
 		metricsPath = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
 	)
-
-	//	log.AddFlags(kingpin.CommandLine)
-	//	kingpin.Version(version.Print("node_exporter"))
-	//	kingpin.HelpFlag.Short('h')
-	//	kingpin.Parse()
 
 	flag.Parse()
 

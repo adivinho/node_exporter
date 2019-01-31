@@ -21,7 +21,6 @@ import (
 	"regexp"
 
 	"github.com/prometheus/client_golang/prometheus"
-	//	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 // Arch-dependent implementation must define:
@@ -31,15 +30,7 @@ import (
 // * filesystemCollector.GetStats
 
 var (
-	//	ignoredMountPoints = kingpin.Flag(
-	//		"collector.filesystem.ignored-mount-points",
-	//		"Regexp of mount points to ignore for filesystem collector.",
-	//	).Default(defIgnoredMountPoints).String()
 	ignoredMountPoints = flag.String("collector.filesystem.ignored-mount-points", defIgnoredMountPoints, "Regexp of mount points to ignore for filesystem collector.")
-	//ignoredFSTypes = kingpin.Flag(
-	//	"collector.filesystem.ignored-fs-types",
-	//	"Regexp of filesystem types to ignore for filesystem collector.",
-	//).Default(defIgnoredFSTypes).String()
 	ignoredFSTypes = flag.String("collector.filesystem.ignored-fs-types", defIgnoredFSTypes, "Regexp of filesystem types to ignore for filesystem collector.")
 
 	filesystemLabelNames = []string{"device", "mountpoint", "fstype"}

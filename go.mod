@@ -11,7 +11,7 @@ require (
 	github.com/mdlayher/genetlink v0.0.0-20180917171408-7615bc153978 // indirect
 	github.com/mdlayher/netlink v0.0.0-20180920202405-794849f2d5bf // indirect
 	github.com/mdlayher/wifi v0.0.0-20180727163819-efdf3f4195d9
-	github.com/percona/exporter_shared v0.0.0-20180924061516-16b0da832557 // indirect
+	github.com/percona/exporter_shared v0.0.0-20180924061516-16b0da832557
 	github.com/prometheus/client_golang v0.9.1
 	github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
 	github.com/prometheus/common v0.2.0

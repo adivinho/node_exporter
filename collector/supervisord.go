@@ -16,16 +16,16 @@
 package collector
 
 import (
+	"flag"
 	"fmt"
 
 	"github.com/mattn/go-xmlrpc"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
-	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 var (
-	supervisordURL = kingpin.Flag("collector.supervisord.url", "XML RPC endpoint.").Default("http://localhost:9001/RPC2").String()
+	supervisordURL = flag.String("collector.supervisord.url", "http://localhost:9001/RPC2", "XML RPC endpoint.")
 )
 
 type supervisordCollector struct {
